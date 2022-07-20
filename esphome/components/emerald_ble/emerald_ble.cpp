@@ -17,6 +17,7 @@ void Emerald::dump_config() {
   LOG_SENSOR(" ", "Total Energy", this->energy_sensor_);
   ESP_LOGD(TAG, "pulses_per_kwh_: %f", this->pulses_per_kwh_);
   ESP_LOGD(TAG, "pulse_multiplier_: %f", this->pulse_multiplier_);
+  ESP_LOGD(TAG, "Pairing Code: %f", this->pairing_code_);
 }
 
 // void Emerald::setup() { this->authenticated_ = false; }
@@ -266,7 +267,7 @@ void Emerald::gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_par
     }
     case ESP_GAP_BLE_PASSKEY_REQ_EVT: { /* passkey request event */
       ESP_LOGE(TAG, "ESP_GAP_BLE_PASSKEY_REQ_EVT, onPassKeyRequest %x", event);
-      ESP_LOGE(TAG, "Testing with pairing code %d", this->pairing_code_);
+      ESP_LOGD(TAG, "Testing with pairing code %f", this->pairing_code_);
       esp_ble_passkey_reply(param->ble_security.ble_req.bd_addr, true, this->pairing_code_);
       break;
     }
