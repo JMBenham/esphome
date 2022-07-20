@@ -266,6 +266,7 @@ void Emerald::gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_par
     }
     case ESP_GAP_BLE_PASSKEY_REQ_EVT: { /* passkey request event */
       ESP_LOGE(TAG, "ESP_GAP_BLE_PASSKEY_REQ_EVT, onPassKeyRequest %x", event);
+      ESP_LOGE(TAG, "Testing with pairing code %d", this->pairing_code_);
       esp_ble_passkey_reply(param->ble_security.ble_req.bd_addr, true, this->pairing_code_);
       break;
     }
